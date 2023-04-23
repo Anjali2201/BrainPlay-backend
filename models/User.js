@@ -25,10 +25,6 @@ const UserSchema = new Schema({
     type: Number,
     required: true,
   },
-  loginCount:{
-    type: Number,
-    required: true,
-  },
   game1: {
     type: Array,
     required: true,
@@ -53,6 +49,14 @@ const UserSchema = new Schema({
     type: Array,
     required: true,
   },
+  points: {
+    type: Number,
+    required: true
+  },
+  time: {
+    type: Number,
+    required: true
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

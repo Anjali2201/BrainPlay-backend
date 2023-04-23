@@ -24,6 +24,7 @@ level4 = require("./routes/level4");
 level5 = require("./routes/level5");
 leaderboard = require("./routes/leaderboard");
 scoreboard = require("./routes/scoreboard");
+admin = require("./routes/admin");
 
 //PORT ENVIRONMENT VARIABLE  MONGODB Connect
 const port = process.env.PORT;
@@ -61,6 +62,7 @@ app.use("/api/game/level4", level4);
 app.use("/api/game/level5", level5);
 app.use("/api/game/leaderboard", leaderboard);
 app.use("/api/game/scoreboard", scoreboard);
+app.use("/api/game/admin", admin);
 
 //catch 404 and forward to error handler
 app.use(function (req, res, next) {

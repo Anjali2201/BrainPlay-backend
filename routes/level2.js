@@ -28,9 +28,11 @@ router.post("/", async function (req, res, next) {
       } else {
         userData[2] = endtime;
         userData[0] = 1;
+        let points = docs.points + 100-(userData[1]*5);
+        let time = docs.time+ endtime;
         User.findOneAndUpdate(
           {email: email},
-          { level: 3, game2: userData },
+          { level: 3, game2: userData, points:points, time:time },
           function (err, docs) {
             if (err) {
               console.log(err);

@@ -15,7 +15,7 @@ router.post("/", async function (req, res, next) {
       if (complete == false) {
         userData[1] = userData[1] + 1;
         User.findOneAndUpdate(
-          {email: email},
+          { email: email },
           { game3: userData },
           function (err, docs) {
             if (err) {
@@ -28,9 +28,11 @@ router.post("/", async function (req, res, next) {
       } else {
         userData[2] = endtime;
         userData[0] = 1;
+        let points = docs.points + 100 - userData[1] * 5;
+        let time = docs.time + endtime;
         User.findOneAndUpdate(
-          {email: email},
-          { level: 4, game3: userData },
+          { email: email },
+          { level: 4, game3: userData, points: points, time: time },
           function (err, docs) {
             if (err) {
               console.log(err);
@@ -38,14 +40,13 @@ router.post("/", async function (req, res, next) {
               console.log("Updated User : ", docs);
             }
           }
-        );        
+        );
       }
       return res.json(docs);
     })
     .catch((err) => {
       console.log(err);
     });
-
 });
 
 module.exports = router;
