@@ -21,8 +21,10 @@ router.post("/", async function (req, res, next) {
   const user = new User({
     name,
     email,
+    admin: false,
     password: hashedPassword,
     level: 1,
+    loginCount: 0,
     game1: [0, 0, 0],
     game2: [0, 0, 0],
     game3: [0, 0, 0],

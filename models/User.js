@@ -12,12 +12,20 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  admin: {
+    type: Boolean,
+    required: false,
+  },
   password: {
     type: String,
     required: true,
     minlength: 6,
   },
   level: {
+    type: Number,
+    required: true,
+  },
+  loginCount:{
     type: Number,
     required: true,
   },

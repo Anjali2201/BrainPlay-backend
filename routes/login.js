@@ -9,6 +9,24 @@ router.post("/", async function (req, res, next) {
   let existingUser;
   try {
     existingUser = await User.findOne({ email });
+    console.log(existingUser);
+    let logcount = existingUser.loginCount+1;
+    await User.findOneAndUpdate(
+      {email: email},
+      { loginCount: logcount },
+      function (err, docs) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Updated User : ", docs);
+          return res.status(200).json({
+            message: "Login Successful",
+            user: existingUser,
+          });
+        }
+      }
+    );
+
   } catch (err) {
     return console.log(err);
   }
@@ -22,10 +40,7 @@ router.post("/", async function (req, res, next) {
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: "Incorrect Password" });
   }
-  return res.status(200).json({
-    message: "Login Successful",
-    user: existingUser,
-  });
+
 });
 
 module.exports = router;
